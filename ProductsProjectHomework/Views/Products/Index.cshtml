@@ -1,0 +1,60 @@
+﻿@model List<Product>
+
+<div class="Products-Page">
+
+	<form method="post" asp-controller="Products" asp-action="Create">
+		<input class="input-group-sm" type="text" name="Name" placeholder="Product Name" />
+		<input class="input-group-sm" type="text" name="Description" placeholder="Product Description" />
+		<input class="input-group-sm" type="number" name="Price" placeholder="Product Price" />
+		<button class="active" type="submit">Add new</button>
+	</form>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Delete</th>
+				<th>Update</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var product in Model)
+			{
+				<tr>
+					<td>@product.Id</td>
+					<td>@product.Name</td>
+					<td>@product.Description</td>
+					<td>@product.Price</td>
+					<td>
+						<form method="post" asp-action="Delete" asp-controller="Products">
+							<input type="hidden" name="Id" value="@product.Id" />
+							<button type="submit">Delete</button>
+						</form>
+					</td>
+					<td>
+						<div>
+							<form method="post" asp-action="Update" asp-controller="Products">
+								<input type="hidden" name="Id" value="@product.Id" />
+								<input type="text" name="Name" placeholder="Product Name" />
+								<input type="text" name="Description" placeholder="Product Description" />
+								<input type="number" name="Price" placeholder="Product Price" />
+								<button type="submit">Save</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+
+
